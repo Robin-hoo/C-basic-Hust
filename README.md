@@ -1,10 +1,9 @@
 # Cấu trúc dữ liệu và Thuật toán - Ngôn ngữ C
 
 <div align="center">
-
-  ![Logo](logo.png)
-
+  <img src="logo.png" width="200" />
 </div>
+
 
 <p align="center">
   <img alt="Static Badge" src="https://img.shields.io/badge/HUST-course-blue?labelColor=365486&color=DCF2F1">
