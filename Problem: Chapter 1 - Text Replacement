@@ -1,0 +1,61 @@
+// Cho văn bản T và 2 mẫu P1, P2 đều là các xâu ký tự (không chứa ký tự xuống dòng, độ dài không vượt quá 1000). Hãy thay thế các xâu P1 trong T bằng xâu P2.
+// Dữ liệu
+// · Dòng 1: xâu P1
+// · Dòng 2: xâu P2
+// · Dòng 3: văn bản T
+// Kết quả:
+// · Ghi văn bản T sau khi thay thế
+// Ví dụ
+// Dữ liệu
+// AI
+// Artificial Intelligence
+// Recently, AI is a key technology. AI enable efficient operations in many fields.
+// Kết quả
+// Recently, Artificial Intelligence is a key technology. Artificial Intelligence enable efficient operations in many fields.
+#include <stdio.h>
+#include <string.h>
+
+char replaceSubstring(char *str,char *P1,char *P2) {
+    char buffer[10000]; // Tạo một bộ đệm lớn để chứa kết quả
+    char *pos;
+    int lenP1 = strlen(P1);
+    int lenP2 = strlen(P2);
+
+    buffer[0] = '\0'; // Khởi tạo chuỗi kết quả
+
+    while ((pos = strstr(str, P1)) != NULL) {  // Tìm P1 trong str
+        // Sao chép phần trước P1 vào buffer
+        strncat(buffer, str, pos - str);
+        // Thêm P2 vào buffer
+        strcat(buffer, P2);
+        // Di chuyển str tới phần tiếp theo sau P1
+        str = pos + lenP1;
+    }
+    
+    // Thêm phần còn lại của chuỗi vào buffer
+    strcat(buffer, str);
+
+    return buffer;
+}
+
+int main() {
+    char P1[1001], P2[1001], T[10001];
+
+    // Đọc vào xâu P1, P2 và T
+    fgets(P1, sizeof(P1), stdin);
+    fgets(P2, sizeof(P2), stdin);
+    fgets(T, sizeof(T), stdin);
+
+    // Loại bỏ ký tự newline ở cuối các xâu (nếu có)
+    P1[strcspn(P1, "\n")] = '\0';
+    P2[strcspn(P2, "\n")] = '\0';
+    T[strcspn(T, "\n")] = '\0';
+
+    // Gọi hàm thay thế
+   char kq = replaceSubstring(T, P1, P2);
+
+    // In ra kết quả
+    printf("%s\n", kq);
+
+    return 0;
+}
